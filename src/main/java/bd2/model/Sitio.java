@@ -3,9 +3,14 @@ package bd2.model;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class Sitio {    // TIRA ERROR EL TEST
+public class Sitio { 
 
-		
+		/*
+		El proyecto consiste en un administrador de tareas,
+		en el mismo hay usuarios y proyectos.
+		 */
+	
+	
 		private Collection<Usuario> usuarios;
 		private Collection<Proyecto> proyectos;
 		
