@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE hibernate-configuration SYSTEM 
+<!DOCTYPE hibernate-configuration SYSTEM
 "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
@@ -11,10 +11,10 @@
 			com.mysql.jdbc.Driver
 		</property>
 
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/GrupoNN</property>
-		<property name="hibernate.connection.username">GrupoNN</property>
-		<property name="hibernate.connection.password">GrupoNN</property>
-		
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Grupo20</property>
+		<property name="hibernate.connection.username">Grupo20</property>
+		<property name="hibernate.connection.password">Grupo20</property>
+
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">
 			true

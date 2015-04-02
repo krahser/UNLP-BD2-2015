@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 public class Sitio {    // TIRA ERROR EL TEST
 
+		
 		private Collection<Usuario> usuarios;
 		private Collection<Proyecto> proyectos;
 		
