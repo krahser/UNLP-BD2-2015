@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class PerfilDeUsuario {
 	
+	/*
+	 * Esta clase representa los usuarios del sistema
+	 */
+	
 	private Date fechaDeCreacion;
 	private Usuario usuario;
 	

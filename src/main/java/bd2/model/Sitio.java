@@ -6,8 +6,8 @@ import java.util.HashSet;
 public class Sitio { 
 
 		/*
-		El proyecto consiste en un administrador de tareas,
-		en el mismo hay usuarios y proyectos.
+		 * El proyecto consiste en un administrador de tareas,
+		 * en el mismo hay usuarios y proyectos.
 		 */
 	
 	

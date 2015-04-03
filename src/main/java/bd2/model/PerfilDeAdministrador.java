@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class PerfilDeAdministrador extends PerfilDeUsuario {
 
+	/*
+	 * El administrador es un tipo de usuario especifico con mayores privilegios
+	 */
+	
 	private boolean creador;
 	
 	

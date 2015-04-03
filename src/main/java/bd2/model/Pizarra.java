@@ -5,6 +5,10 @@ import java.util.HashSet;
 
 public class Pizarra {
 	
+	/*
+	 * En esta clase representamos la pizzarra y el conjunto de tareas asociadas
+	 */
+	
 	private String nombre;
 	private Collection<Tarea> tareas;
 	
@@ -46,10 +50,7 @@ public class Pizarra {
 	
 	public void moverTareaAPizarra(Tarea tarea, Pizarra destino){
 		/*
-		 * Mueve una tarea propia a la pizarra destino. 
-		 * Luego de esto, naturalmente, la tarea no debe estar más en la pizarra receptora
-		 * sino en destino. Notar además que la tarea tiene que registrar su paso a
-		 * la pizarra destino
+		 * Mueve una tarea a la pizarra destino y se agrega el paso
 		 */
 		
 		

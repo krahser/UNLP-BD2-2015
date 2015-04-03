@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class Paso {
 	
+	
+	/*
+	 * Esta clase sirve para determinar el Paso de una tarea por una pizzarra
+	 */
 	private Date fechaDeIngreso;
 	private Pizarra pizarra;
 	

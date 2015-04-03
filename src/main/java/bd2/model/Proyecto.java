@@ -24,9 +24,8 @@ public class Proyecto {
 	
 	public Proyecto(Usuario creador){  
 		/*
-		 * Constructor. El usuario enviado como parámetro tiene que 
-		 * agregarse al proyecto con perfil de administrador, 
-		 * y marcarse como creador.
+		 * El usuario enviado como parámetro tiene que 
+		 * agregarse al proyecto con perfil de administrador  y marcarse como creador.
 		 */
 		pizarras=new HashSet<Pizarra>();
 		pizarrasArchivadas=new HashSet<Pizarra>();
@@ -56,9 +55,8 @@ public class Proyecto {
 	public void archivarPizarra(Pizarra pizarra){
 		
 		/* 	
-		 * Deja de estar en la colección de pizarras y pasa a
+		 * Elimina de la colección de pizarras y pasa a 
 		 * la colección de pizarras archivadas.
-		 * 
 		 */
 		
 		
@@ -74,14 +72,9 @@ public class Proyecto {
 	
 	
 	public Collection<Usuario> getIntegrantes(){
-		
 		/*
-		 * Genera un perfil de usuario administrador (PerfilDeAdministrador)
-		 * con el usuario enviado como parámetro, y lo agrega a la colección
-		 * de perfiles.
+		 * retorna el conjunto de todos los integrantes que pertencen al proyecto
 		 */
-
-		
 		HashSet<Usuario> u = new HashSet<Usuario>();
 		for (PerfilDeUsuario p: perfiles){
 			u.add(p.getUsuario());
@@ -110,9 +103,9 @@ public class Proyecto {
 	public void eliminarUsuario(Usuario candidato) throws Exception{  
 		
 		/*
-		 * Elimina al usuario enviado como parámetro. Si el usuario que se
-		 * desea eliminar es el creador, lanzar una excepción con el mensaje: 
-		 * “No se puede eliminar al creador del proyecto”
+		 * Elimina al usuario enviado como parámetro. 
+		 * Si coincide con el perfil de un usuario dentro del proyecto
+		 * se elimina, en caso de que no exista se elimina el perfil null
 		 */
 		
 		

@@ -2,6 +2,10 @@ package bd2.model;
 
 public class Usuario {
 	
+	/*
+	 * Se modelan los datos del usuario
+	 */
+	
 	private String email;
 	private String nombre;
 	
@@ -30,8 +34,5 @@ public class Usuario {
 	public void setNombre(String nom){
 		nombre=nom;
 	}
-	
-
-	
 
 }
