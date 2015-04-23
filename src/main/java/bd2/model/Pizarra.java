@@ -35,6 +35,10 @@ public class Pizarra {
 		return tareas;
 	}
 	
+	public void setTareas(Tarea tarea){
+		agregarTarea(tarea);
+	}
+	
 	
 	public void agregarTarea(Tarea tarea){
 		/*

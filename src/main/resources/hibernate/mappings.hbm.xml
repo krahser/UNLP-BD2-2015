@@ -21,24 +21,24 @@
 	
 	</class>
 	
-<!-- 	<class name="PerfilDeUsuario" table="perfilDeUsuario"> -->
+	<class name="PerfilDeUsuario" table="perfilDeUsuario">
 
-<!-- 		<id name="idPerfilDeUsuario" column="ID_PERFILDEUSUARIO"> -->
-<!-- 			<generator class="native"/> -->
-<!-- 	    </id> -->
+		<id name="idPerfilDeUsuario" column="ID_PERFILDEUSUARIO">
+			<generator class="native"/>
+	    </id>
 	
 		
-<!-- 	    <property name="fechaDeCreacion" not-null="true" type="date"/> -->
+	    <property name="fechaDeCreacion" not-null="true" type="date"/>
 	    
 	    
-<!-- 		<many-to-one name="Usuario" column="idUsuario" unique="true" not-null="true" cascade="all"/> -->
+		<many-to-one name="Usuario" column="idUsuario" unique="true" not-null="true" cascade="all"/>
 		
 <!-- 		<joined-subclass name="PerfilDeAdministrador" table="perfilDeAdministrador"> -->
 <!-- 			<key column="ID_PERFILDEUSUARIO"/> -->
 <!-- 			<property name="creador" column="creador" type="boolean"/> -->
 <!-- 		</joined-subclass> -->
 	
-<!-- 	</class> -->
+	</class>
 	
 	<class name="Tarea" table="tarea">
 		<id name="idTarea" column="ID_TAREA">
@@ -60,25 +60,25 @@
 	</class>	
 		
 	
-<!-- 	<class name="Pizarra" table="pizarra"> -->
-<!-- 		<id name="idPizarra" column="ID_PIZARRA"> -->
-<!-- 			<generator class="native"/> -->
-<!-- 		</id> -->
+	<class name="Pizarra" table="pizarra">
+		<id name="idPizarra" column="ID_PIZARRA">
+			<generator class="native"/>
+		</id>
 		
-<!-- 		<property name="nombre" not-null="true" type="string"/> -->
+		<property name="nombre" not-null="true" type="string"/>
 		
-<!-- 		<set name="tareas" cascade="all">  -->
-<!-- 			<key column="ID_PIZARRA" not-null="true"/> -->
-<!-- 			<one-to-many class="Tarea"/> -->
-<!-- 		</set> -->
+		<set name="tareas" cascade="all"> 
+			<key column="ID_PIZARRA" not-null="true"/>
+			<one-to-many class="Tarea"/>
+		</set>
 		
 		
-<!-- 	</class> -->
+	</class>
 
-<!-- 	<class name="Proyecto" table="proyecto"> -->
-<!-- 		<id name="idProyecto" column="ID_PROYECTO"> -->
-<!-- 			<generator class="native"/> -->
-<!-- 		</id> -->
+	<class name="Proyecto" table="proyecto">
+		<id name="idProyecto" column="ID_PROYECTO">
+			<generator class="native"/>
+		</id>
 		
 <!-- 		<set name="perfiles" cascade="all">  -->
 <!-- 			<key column="ID_PERFILDEUSUARIO" not-null="true"/> -->
@@ -95,34 +95,34 @@
 <!-- 			<one-to-many class="Pizarra"/> -->
 <!-- 		</set> -->
 		
-<!-- 	</class> -->
+	</class>
 	
-<!-- 	<class name="Paso" table="paso">	 -->
-<!-- 		<id name="idPaso" column="ID_PASO"> -->
-<!-- 			<generator class="native"/> -->
-<!-- 		</id> -->
+	<class name="Paso" table="paso">	
+		<id name="idPaso" column="ID_PASO">
+			<generator class="native"/>
+		</id>
 		
-<!-- 		<property name="fechaDeIngreso" not-null="true" type="date"/> -->
+		<property name="fechaDeIngreso" not-null="true" type="date"/>
 	    
-<!-- 		<many-to-one name="Pizarra" column="ID_PIZARRA" unique="true" not-null="true" cascade="all" /> -->
-<!-- 	</class> -->
+		<many-to-one name="Pizarra" column="ID_PIZARRA" unique="true" not-null="true" cascade="all" />
+	</class>
 	
-<!-- 	<class name="Sitio" table="sitio"> -->
-<!-- 		<id name="idSitio" column="ID_SITIO"> -->
-<!-- 			<generator class="native"/> -->
-<!-- 		</id> -->
+	<class name="Sitio" table="sitio">
+		<id name="idSitio" column="ID_SITIO">
+			<generator class="native"/>
+		</id>
 		
-<!-- 		<set name="usuarios" cascade="all">  -->
-<!-- 			<key column="ID_SITIO" not-null="true"/> -->
-<!-- 			<one-to-many class="Usuario"/> -->
-<!-- 		</set> -->
+		<set name="usuarios" cascade="all"> 
+			<key column="ID_SITIO" not-null="true"/>
+			<one-to-many class="Usuario"/>
+		</set>
 		
-<!-- 		<set name="proyectos" cascade="all">  -->
-<!-- 			<key column="ID_SITIO" not-null="true"/> -->
-<!-- 			<one-to-many class="Proyecto"/> -->
-<!-- 		</set> -->
+		<set name="proyectos" cascade="all"> 
+			<key column="ID_SITIO" not-null="true"/>
+			<one-to-many class="Proyecto"/>
+		</set>
 		
-<!-- 	</class> -->
+	</class>
 	
 	
 </hibernate-mapping>

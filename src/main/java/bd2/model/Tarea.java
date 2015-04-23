@@ -41,12 +41,20 @@ public abstract class Tarea {
 		setDescripcion("");
 	}
 	
-	public boolean completa(){
+	public boolean getCompleta(){
 		return completa;
 	}
 	
+	public void setCompleta(boolean estaCompleta){
+		completa=estaCompleta;
+	}
+	
+	public boolean completa(){
+		return getCompleta();
+	}
+	
 	public void completar(){
-		completa=true;
+		setCompleta(true);
 	}
 	
 	public Date getFechaLimite(){

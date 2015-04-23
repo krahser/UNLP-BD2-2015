@@ -24,12 +24,20 @@ public class Sitio {
 			return usuarios;
 		}
 		
+		public void setUsuarios(Usuario usuario){  
+			registrarUsuario(usuario);
+		}
+		
 		public void registrarUsuario(Usuario usuario){  
 			usuarios.add(usuario);
 		}
 		
 		public Collection<Proyecto> getProyectos(){
 			return proyectos;
+		}
+		
+		public void setProyectos(Proyecto proyecto){
+			agregarProyecto(proyecto);
 		}
 		
 		public void agregarProyecto(Proyecto proyecto){
