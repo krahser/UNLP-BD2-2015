@@ -11,9 +11,15 @@ public class Pizarra {
 	
 	private String nombre;
 	private Collection<Tarea> tareas;
+	private Long idPizarra;
 	
 	public Pizarra(String nom){     
-		nombre = nom;
+		setNombre(nom);
+		tareas = new HashSet<Tarea>();
+	}
+	
+	public Pizarra(){                    //Constructor sin parámetros
+		setNombre("");
 		tareas = new HashSet<Tarea>();
 	}
 	
@@ -56,5 +62,13 @@ public class Pizarra {
 		
 		this.eliminarTarea(tarea);
 		destino.agregarTarea(tarea);
+	}
+
+	public Long getIdPizarra() {
+		return idPizarra;
+	}
+
+	public void setIdPizarra(Long idPizarra) {
+		this.idPizarra = idPizarra;
 	}
 }

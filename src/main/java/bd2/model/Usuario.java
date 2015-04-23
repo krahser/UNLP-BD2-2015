@@ -8,15 +8,24 @@ public class Usuario {
 	
 	private String email;
 	private String nombre;
+	private Long idUsuario;
 	
 	public Usuario(String e, String n){
-		email=e;
-		nombre=n;
+		setEmail(e);
+		setNombre(n);
 	}
 	
 	public Usuario(){
-		email="";
-		nombre="";
+		setEmail("");
+		setNombre("");
+	}
+	
+	public Long getIdUsuario(){
+		return idUsuario;
+	}
+	
+	public void setIdUsuario(Long id){
+		idUsuario=id;
 	}
 	
 	public String getEmail(){

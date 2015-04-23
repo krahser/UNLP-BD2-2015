@@ -10,10 +10,17 @@ public class Paso {
 	 */
 	private Date fechaDeIngreso;
 	private Pizarra pizarra;
+	private Long idPaso;
 	
 	public Paso(Pizarra piz){
-		pizarra=piz;
-		fechaDeIngreso= new Date();
+		//asigna la pizarra pasada como parametro y la fecha actual
+		setPizarra(piz);
+		setFechaDeIngreso(new Date());
+	}
+	
+	public Paso(){                      // Constructor sin parámetros
+		setPizarra(null);
+		setFechaDeIngreso(new Date());
 	}
 
 	public Pizarra getPizarra(){    
@@ -30,6 +37,14 @@ public class Paso {
 	
 	public void setFechaDeIngreso(Date fecha){
 		fechaDeIngreso = fecha;
+	}
+
+	public Long getIdPaso() {
+		return idPaso;
+	}
+
+	public void setIdPaso(Long idPaso) {
+		this.idPaso = idPaso;
 	}
 	
 	

@@ -8,19 +8,20 @@ public class TareaDeInvestigacion extends Tarea{
 	
 	private String hipotesis;
 	private String resultado;
+	private Long idTareaDeInvestigacion;
 	
 	
 	public TareaDeInvestigacion(String desc,Date fecha) {  
 		super(desc,fecha);
-		hipotesis="";
-		resultado="";
+		setHipotesis("");
+		setResultado("");
 	}
 	
 
 	public TareaDeInvestigacion() {
 		super("",new Date());
-		hipotesis="";
-		resultado="";
+		setHipotesis("");
+		setResultado("");
 	}
 
 
@@ -38,6 +39,16 @@ public class TareaDeInvestigacion extends Tarea{
 	
 	public void setResultado(String res){
 		resultado=res;
+	}
+
+
+	public Long getIdTareaDeInvestigacion() {
+		return idTareaDeInvestigacion;
+	}
+
+
+	public void setIdTareaDeInvestigacion(Long idTareaDeInvestigacion) {
+		this.idTareaDeInvestigacion = idTareaDeInvestigacion;
 	}
 	
 }

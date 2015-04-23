@@ -10,11 +10,17 @@ public class PerfilDeUsuario {
 	
 	private Date fechaDeCreacion;
 	private Usuario usuario;
+	private Long idPerfilDeUsuario;
 	
 	
 	public PerfilDeUsuario(Date fecha, Usuario usu){
-		fechaDeCreacion=fecha;
-		usuario=usu;
+		setFechaDeCreacion(fecha);
+		setUsuario(usu);
+	}
+	
+	public PerfilDeUsuario(){            //Constructor sin parámetros
+		setFechaDeCreacion(new Date());
+		setUsuario(null);
 	}
 	
 	public Date getFechaDeCreacion(){
@@ -38,6 +44,14 @@ public class PerfilDeUsuario {
 	
 	public void eliminarDe(Proyecto proyecto) throws Exception{  
 		proyecto.eliminarPerfil(this);
+	}
+
+	public Long getIdPerfilDeUsuario() {
+		return idPerfilDeUsuario;
+	}
+
+	public void setIdPerfilDeUsuario(Long idPerfilDeUsuario) {
+		this.idPerfilDeUsuario = idPerfilDeUsuario;
 	}
 	
 }

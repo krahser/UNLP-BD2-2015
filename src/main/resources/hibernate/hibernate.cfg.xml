@@ -11,16 +11,16 @@
 			com.mysql.jdbc.Driver
 		</property>
 
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Grupo20</property>
-		<property name="hibernate.connection.username">Grupo20</property>
-		<property name="hibernate.connection.password">Grupo20</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/grupo20</property>
+		<property name="hibernate.connection.username">grupo20</property>
+		<property name="hibernate.connection.password">grupo20</property>
 
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">
 			true
 		</property>
-
+		<property name="hbm2ddl.auto">create</property>
 		<mapping resource="hibernate/mappings.hbm.xml" />
-
+		
 	</session-factory>
 </hibernate-configuration>

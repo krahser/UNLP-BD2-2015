@@ -21,6 +21,7 @@ public abstract class Tarea {
 	private Date fechaLimite;
 	private String descripcion;
 	private Collection<Paso> pasos;
+	private Long idTarea;
 	
 	public Tarea(String desc,Date fecha){
 		
@@ -30,10 +31,15 @@ public abstract class Tarea {
 		
 		
 		pasos = new ArrayList<Paso>();
-		fechaLimite = fecha;
-		descripcion = desc;
+		setFechaLimite(fecha);
+		setDescripcion(desc);
 	}
 	
+	public Tarea(){
+		pasos = new ArrayList<Paso>();
+		setFechaLimite(new Date());
+		setDescripcion("");
+	}
 	
 	public boolean completa(){
 		return completa;
@@ -93,6 +99,14 @@ public abstract class Tarea {
 		 */
 		
 		pizarra.agregarTarea(this);
+	}
+
+	public Long getIdTarea() {
+		return idTarea;
+	}
+
+	public void setIdTarea(Long idTarea) {
+		this.idTarea = idTarea;
 	}
 	
 }

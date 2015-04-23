@@ -13,6 +13,7 @@ public class Sitio {
 	
 		private Collection<Usuario> usuarios;
 		private Collection<Proyecto> proyectos;
+		private Long idSitio;
 		
 		public Sitio(){
 			usuarios= new HashSet<Usuario>();
@@ -33,5 +34,13 @@ public class Sitio {
 		
 		public void agregarProyecto(Proyecto proyecto){
 			proyectos.add(proyecto);
+		}
+
+		public Long getIdSitio() {
+			return idSitio;
+		}
+
+		public void setIdSitio(Long idSitio) {
+			this.idSitio = idSitio;
 		}
 }

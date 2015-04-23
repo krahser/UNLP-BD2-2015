@@ -5,16 +5,17 @@ import java.util.Date;
 public class TareaDeDesarrollo extends Tarea{
 
 	private String requerimientos;
+	private Long idTareaDeDesarrollo;
 	
 	public TareaDeDesarrollo(String desc,Date fecha){  
 		super(desc,fecha);
-		requerimientos="";
+		setRequerimientos("");
 	}
 	
 
 	public TareaDeDesarrollo() {
 		super("",new Date());
-		requerimientos="";
+		setRequerimientos("");
 	}
 
 
@@ -24,6 +25,16 @@ public class TareaDeDesarrollo extends Tarea{
 	
 	public void setRequerimientos(String req){
 		requerimientos=req;
+	}
+
+
+	public Long getIdTareaDeDesarrollo() {
+		return idTareaDeDesarrollo;
+	}
+
+
+	public void setIdTareaDeDesarrollo(Long idTareaDeDesarrollo) {
+		this.idTareaDeDesarrollo = idTareaDeDesarrollo;
 	}
 	
 	
