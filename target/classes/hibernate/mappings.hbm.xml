@@ -13,12 +13,7 @@
 	
 	    <property name="email" not-null="true" type="string"/>
 	    <property name="nombre" not-null="true" type="string"/>
-	
-<!-- 		<set name="perfiles" inverse="true"> -->
-<!-- 			<key column="ID_PERFILDEUSUARIO" /> -->
-<!-- 			<one-to-many class="PerfilDeUsuario"/> -->
-<!-- 		</set> -->
-	
+		
 	</class>
 	
 	<class name="PerfilDeUsuario" table="perfilDeUsuario">
@@ -33,10 +28,10 @@
 	    
 		<many-to-one name="Usuario" column="idUsuario" unique="true" not-null="true" cascade="all"/>
 		
-<!-- 		<joined-subclass name="PerfilDeAdministrador" table="perfilDeAdministrador"> -->
-<!-- 			<key column="ID_PERFILDEUSUARIO"/> -->
-<!-- 			<property name="creador" column="creador" type="boolean"/> -->
-<!-- 		</joined-subclass> -->
+		<joined-subclass name="PerfilDeAdministrador" table="perfilDeAdministrador">
+			<key column="ID_PERFILDEUSUARIO"/>
+			<property name="creador" column="creador" type="boolean"/>
+		</joined-subclass>
 	
 	</class>
 	
@@ -112,10 +107,10 @@
 			<generator class="native"/>
 		</id>
 		
-		<set name="usuarios" cascade="all"> 
-			<key column="ID_SITIO" not-null="true"/>
-			<one-to-many class="Usuario"/>
-		</set>
+<!-- 		<set name="usuarios" cascade="all">  -->
+<!-- 			<key column="ID_SITIO" not-null="true"/> -->
+<!-- 			<one-to-many class="Usuario"/> -->
+<!-- 		</set> -->
 		
 		<set name="proyectos" cascade="all"> 
 			<key column="ID_SITIO" not-null="true"/>
