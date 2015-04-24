@@ -35,8 +35,8 @@ public class Pizarra {
 		return tareas;
 	}
 	
-	public void setTareas(Tarea tarea){
-		agregarTarea(tarea);
+	public void setTareas(Collection<Tarea> tarea){
+		this.tareas = tarea;
 	}
 	
 	

@@ -28,14 +28,14 @@ public class PerfilDeUsuario {
 	}
 	
 	public void setFechaDeCreacion(Date fecha){
-		fechaDeCreacion=fecha;
+		this.fechaDeCreacion=fecha;
 	}
 	public Usuario getUsuario(){
 		return usuario;
 	}
 	
 	public void setUsuario(Usuario u){
-		usuario=u;
+		this.usuario=u;
 	}
 	
 	public boolean esCreador(){

@@ -46,7 +46,7 @@ public abstract class Tarea {
 	}
 	
 	public void setCompleta(boolean estaCompleta){
-		completa=estaCompleta;
+		this.completa=estaCompleta;
 	}
 	
 	public boolean completa(){

@@ -25,7 +25,7 @@ public class Usuario {
 	}
 	
 	public void setIdUsuario(Long id){
-		idUsuario=id;
+		this.idUsuario=id;
 	}
 	
 	public String getEmail(){

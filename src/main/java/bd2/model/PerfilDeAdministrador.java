@@ -24,7 +24,7 @@ public class PerfilDeAdministrador extends PerfilDeUsuario {
 	}
 	
 	public void setCreador(boolean cond){
-		creador=cond;
+		this.creador=cond;
 	}
 
 	public boolean getCreador(){

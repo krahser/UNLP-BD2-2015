@@ -24,7 +24,7 @@ public class TareaDeDesarrollo extends Tarea{
 	}
 	
 	public void setRequerimientos(String req){
-		requerimientos=req;
+		this.requerimientos=req;
 	}
 
 

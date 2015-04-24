@@ -24,8 +24,8 @@ public class Sitio {
 			return usuarios;
 		}
 		
-		public void setUsuarios(Usuario usuario){  
-			registrarUsuario(usuario);
+		public void setUsuarios(Collection<Usuario> usuarios){  
+			this.usuarios = usuarios;
 		}
 		
 		public void registrarUsuario(Usuario usuario){  
@@ -36,8 +36,8 @@ public class Sitio {
 			return proyectos;
 		}
 		
-		public void setProyectos(Proyecto proyecto){
-			agregarProyecto(proyecto);
+		public void setProyectos(Collection<Proyecto> proyectos){
+			this.proyectos = proyectos;
 		}
 		
 		public void agregarProyecto(Proyecto proyecto){
