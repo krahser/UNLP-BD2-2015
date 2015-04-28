@@ -50,10 +50,19 @@ public class Proyecto {
 		return pizarras;
 	}
 
+	public void setPizarras(Collection<Pizarra> pizarrasNuevas){
+		this.pizarras = pizarrasNuevas;
+	}
+	
+	
 	public Collection<Pizarra> getPizarrasArchivadas(){
 		return pizarrasArchivadas;
 	}
 
+	public void setPizarrasArchivadas(Collection<Pizarra> pizarrasNuevas){
+		this.pizarrasArchivadas = pizarrasNuevas;
+	}
+	
 	public void agregarPizarra(Pizarra pizarra){
 		pizarras.add(pizarra);
 	}
@@ -81,7 +90,9 @@ public class Proyecto {
 		return perfiles;
 	}
 
-
+	public void setPerfiles(Collection<PerfilDeUsuario> perfilesNuevos){
+		this.perfiles = perfilesNuevos;
+	}
 
 
 	public Collection<Usuario> getIntegrantes(){
