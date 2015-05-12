@@ -13,6 +13,18 @@ public class Pizarra {
 	private Collection<Tarea> tareas;
 	private Long idPizarra;
 	
+	public Long getIdPizarra(){
+		return idPizarra;
+	}
+	public void setIdPizarra(Long id){
+		idPizarra= id;
+	}
+	
+	public void setTareas(Collection<Tarea> t){
+		tareas= t;
+	}
+	
+	
 	public Pizarra(String nom){     
 		setNombre(nom);
 		tareas = new HashSet<Tarea>();
@@ -33,10 +45,6 @@ public class Pizarra {
 	
 	public Collection<Tarea> getTareas(){
 		return tareas;
-	}
-	
-	public void setTareas(Collection<Tarea> tarea){
-		this.tareas = tarea;
 	}
 	
 	
@@ -66,13 +74,5 @@ public class Pizarra {
 		
 		this.eliminarTarea(tarea);
 		destino.agregarTarea(tarea);
-	}
-
-	public Long getIdPizarra() {
-		return idPizarra;
-	}
-
-	public void setIdPizarra(Long idPizarra) {
-		this.idPizarra = idPizarra;
 	}
 }

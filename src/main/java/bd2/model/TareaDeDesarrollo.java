@@ -24,17 +24,7 @@ public class TareaDeDesarrollo extends Tarea{
 	}
 	
 	public void setRequerimientos(String req){
-		this.requerimientos=req;
-	}
-
-
-	public Long getIdTareaDeDesarrollo() {
-		return idTareaDeDesarrollo;
-	}
-
-
-	public void setIdTareaDeDesarrollo(Long idTareaDeDesarrollo) {
-		this.idTareaDeDesarrollo = idTareaDeDesarrollo;
+		requerimientos=req;
 	}
 	
 	

@@ -7,113 +7,118 @@
 
 	<class name="Usuario" table="usuario">
 
-		<id name="idUsuario" column="ID_USUARIO">
+		<id name="idUsuario" column="idUsuario">
 		<generator class="native"/>
 	    </id>
 	
-	    <property name="email" not-null="true" type="string"/>
-	    <property name="nombre" not-null="true" type="string"/>
-		
+	    <property name="email" not-null="true"/>
+	
+	    <property name="nombre" not-null="true"/>
+	
 	</class>
 	
 	<class name="PerfilDeUsuario" table="perfilDeUsuario">
 
-		<id name="idPerfilDeUsuario" column="ID_PERFILDEUSUARIO">
+		<id name="idPerfilDeUsuario" column="idPerfilDeUsuario">
 			<generator class="native"/>
 	    </id>
 	
-		
-	    <property name="fechaDeCreacion" not-null="true" type="date"/>
+	    <property name="fechaDeCreacion" not-null="true"/>
 	    
-	    
-		<many-to-one name="Usuario" column="idUsuario" unique="true" not-null="true" cascade="all"/>
+		<many-to-one name="Usuario" column="idUsuario" cascade="all" />
 		
 		<joined-subclass name="PerfilDeAdministrador" table="perfilDeAdministrador">
-			<key column="ID_PERFILDEUSUARIO"/>
-			<property name="creador" column="creador" type="boolean"/>
+			<key column="idPerfilDeUsuario"/>
+			<property name="creador" column="creador"/>
 		</joined-subclass>
 	
 	</class>
 	
 	<class name="Tarea" table="tarea">
-		<id name="idTarea" column="ID_TAREA">
+	
+		<id name="idTarea" column="idTarea">
 			<generator class="native"/>
 		</id>
-		<discriminator column="TIPO_TAREA" type="string"/>
-		<property name="completa" column="COMPLETA" not-null="true" type="boolean"/>
-		<property name="fechaLimite" column="FECHA_LIMITE" not-null="true" type="date"/>
-		<property name="descripcion" column="DESCRIPCION" not-null="true" type="string"/>
-	
-		<subclass name="TareaDeInvestigacion" discriminator-value="TDI">
-			<property name="hipotesis" column="HIPOTESIS" />
-			<property name="resultado" column="RESULTADO" />
-	
-		</subclass>
-		<subclass name="TareaDeDesarrollo" discriminator-value="TDD">
-			<property name="requerimientos" column="REQUERIMIENTOS"/>
-		</subclass>
-	</class>	
 		
+		<property name="completa" not-null="true"/>
+		<property name="fechaLimite" not-null="true"/>
+		<property name="descripcion" not-null="true"/>
+		
+		<list name="pasos" cascade="all"> 
+			<key column="idTarea"/>
+			<index column="indiceTarea"/>
+			<one-to-many class="Paso"/>
+		</list>
+		
+		<joined-subclass name="TareaDeInvestigacion" table="tareaDeInvestigacion">
+			<key column="idTarea"/>
+			<property name="hipotesis" column="hipotesis"/>
+			<property name="resultado" column="resultado"/>
+		</joined-subclass>
+		
+		<joined-subclass name="TareaDeDesarrollo" table="tareaDeDesarrollo">
+			<key column="idTarea"/>
+			<property name="requerimientos" column="requerimientos" length = "1024"/>
+		</joined-subclass>
+		
+	</class>
 	
 	<class name="Pizarra" table="pizarra">
-		<id name="idPizarra" column="ID_PIZARRA">
+		<id name="idPizarra" column="idPizarra">
 			<generator class="native"/>
 		</id>
 		
-		<property name="nombre" not-null="true" type="string"/>
-		
 		<set name="tareas" cascade="all"> 
-			<key column="ID_PIZARRA" />
+			<key column="idPizarra"/>
 			<one-to-many class="Tarea"/>
 		</set>
-		
 		
 	</class>
 
 	<class name="Proyecto" table="proyecto">
-		<id name="idProyecto" column="ID_PROYECTO">
+		<id name="idProyecto" column="idProyecto">
 			<generator class="native"/>
 		</id>
 		
-		<set name="perfiles" cascade="all"> 
-			<key column="ID_PROYECTO_USUARIO"/>
-			<one-to-many class="PerfilDeUsuario"/>
-		</set>
-		
 		<set name="pizarras" cascade="all"> 
-			<key column="ID_PROYECTO"/>
+			<key column="idProyecto"/>
 			<one-to-many class="Pizarra"/>
 		</set>
 		
 		<set name="pizarrasArchivadas" cascade="all"> 
-			<key column="ID_PROYECTO_ARCHIVADA"/>
+			<key column="idProyecto_Archivadas"/>
 			<one-to-many class="Pizarra"/>
+		</set>
+		
+		<set name="perfiles" cascade="all"> 
+			<key column="idProyecto"/>
+			<one-to-many class="PerfilDeUsuario"/>
 		</set>
 		
 	</class>
 	
-	<class name="Paso" table="paso">	
-		<id name="idPaso" column="ID_PASO">
+	<class name="Paso" table="paso">
+		<id name="idPaso" column="idPaso">
 			<generator class="native"/>
 		</id>
 		
-		<property name="fechaDeIngreso" not-null="true" type="date"/>
+		<property name="fechaDeIngreso" not-null="true"/>
 	    
-		<many-to-one name="Pizarra" column="ID_PIZARRA" unique="true" not-null="true" cascade="all" />
+		<many-to-one name="Pizarra" column="idPizarra" cascade="all" />
 	</class>
 	
 	<class name="Sitio" table="sitio">
-		<id name="idSitio" column="ID_SITIO">
+		<id name="idSitio" column="idSitio">
 			<generator class="native"/>
 		</id>
 		
 		<set name="usuarios" cascade="all"> 
-			<key column="ID_SITIO"/>
+			<key column="idSitio"/>
 			<one-to-many class="Usuario"/>
 		</set>
 		
 		<set name="proyectos" cascade="all"> 
-			<key column="ID_SITIO" />
+			<key column="idSitio"/>
 			<one-to-many class="Proyecto"/>
 		</set>
 		

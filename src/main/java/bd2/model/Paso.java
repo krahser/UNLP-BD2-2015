@@ -23,6 +23,13 @@ public class Paso {
 		setFechaDeIngreso(new Date());
 	}
 
+	public Long getIdPaso(){
+		return idPaso;
+	}
+	
+	public void setIdPaso(Long id){
+		idPaso=id;
+	}
 	public Pizarra getPizarra(){    
 		return pizarra;
 	}
@@ -37,14 +44,6 @@ public class Paso {
 	
 	public void setFechaDeIngreso(Date fecha){
 		fechaDeIngreso = fecha;
-	}
-
-	public Long getIdPaso() {
-		return idPaso;
-	}
-
-	public void setIdPaso(Long idPaso) {
-		this.idPaso = idPaso;
 	}
 	
 	

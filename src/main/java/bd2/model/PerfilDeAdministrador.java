@@ -24,23 +24,15 @@ public class PerfilDeAdministrador extends PerfilDeUsuario {
 	}
 	
 	public void setCreador(boolean cond){
-		this.creador=cond;
+		creador=cond;
 	}
-
+	
 	public boolean getCreador(){
 		return creador;
 	}
-	
+
 	public boolean esCreador(){
-		return getCreador();
-	}
-
-	public Long getIdPerfilDeAdministrador() {
-		return idPerfilDeAdministrador;
-	}
-
-	public void setIdPerfilDeAdministrador(Long idPerfilDeAdministrador) {
-		this.idPerfilDeAdministrador = idPerfilDeAdministrador;
+		return creador;
 	}
 
 }

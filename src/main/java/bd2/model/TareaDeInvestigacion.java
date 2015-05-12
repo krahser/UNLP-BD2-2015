@@ -30,7 +30,7 @@ public class TareaDeInvestigacion extends Tarea{
 	}
 	
 	public void setHipotesis(String hip){
-		this.hipotesis=hip;
+		hipotesis=hip;
 	}
 	
 	public String getResultado(){
@@ -38,17 +38,7 @@ public class TareaDeInvestigacion extends Tarea{
 	}
 	
 	public void setResultado(String res){
-		this.resultado=res;
-	}
-
-
-	public Long getIdTareaDeInvestigacion() {
-		return idTareaDeInvestigacion;
-	}
-
-
-	public void setIdTareaDeInvestigacion(Long idTareaDeInvestigacion) {
-		this.idTareaDeInvestigacion = idTareaDeInvestigacion;
+		resultado=res;
 	}
 	
 }

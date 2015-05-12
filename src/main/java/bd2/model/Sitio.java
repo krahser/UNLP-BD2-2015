@@ -24,8 +24,12 @@ public class Sitio {
 			return usuarios;
 		}
 		
-		public void setUsuarios(Collection<Usuario> usuarios){  
-			this.usuarios = usuarios;
+		public void setUsuarios(Collection<Usuario> us){
+			usuarios= us;
+		}
+		
+		public void setProyectos(Collection<Proyecto> proy){
+			proyectos= proy;
 		}
 		
 		public void registrarUsuario(Usuario usuario){  
@@ -36,19 +40,14 @@ public class Sitio {
 			return proyectos;
 		}
 		
-		public void setProyectos(Collection<Proyecto> proyectos){
-			this.proyectos = proyectos;
-		}
-		
 		public void agregarProyecto(Proyecto proyecto){
 			proyectos.add(proyecto);
 		}
-
-		public Long getIdSitio() {
+		
+		public Long getIdSitio(){
 			return idSitio;
 		}
-
-		public void setIdSitio(Long idSitio) {
-			this.idSitio = idSitio;
+		public void setIdSitio(Long id){
+			idSitio= id;
 		}
 }

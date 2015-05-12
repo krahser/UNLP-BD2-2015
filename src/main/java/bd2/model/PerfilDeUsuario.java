@@ -23,19 +23,26 @@ public class PerfilDeUsuario {
 		setUsuario(null);
 	}
 	
+	public Long getIdPerfilDeUsuario(){
+		return idPerfilDeUsuario;
+	}
+	
+	public void setIdPerfilDeUsuario(Long id){
+		idPerfilDeUsuario=id;
+	}
 	public Date getFechaDeCreacion(){
 		return fechaDeCreacion;
 	}
 	
 	public void setFechaDeCreacion(Date fecha){
-		this.fechaDeCreacion=fecha;
+		fechaDeCreacion=fecha;
 	}
 	public Usuario getUsuario(){
 		return usuario;
 	}
 	
 	public void setUsuario(Usuario u){
-		this.usuario=u;
+		usuario=u;
 	}
 	
 	public boolean esCreador(){
@@ -44,14 +51,6 @@ public class PerfilDeUsuario {
 	
 	public void eliminarDe(Proyecto proyecto) throws Exception{  
 		proyecto.eliminarPerfil(this);
-	}
-
-	public Long getIdPerfilDeUsuario() {
-		return idPerfilDeUsuario;
-	}
-
-	public void setIdPerfilDeUsuario(Long idPerfilDeUsuario) {
-		this.idPerfilDeUsuario = idPerfilDeUsuario;
 	}
 	
 }

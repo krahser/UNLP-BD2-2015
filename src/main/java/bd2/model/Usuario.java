@@ -16,8 +16,8 @@ public class Usuario {
 	}
 	
 	public Usuario(){
-		setEmail("");
-		setNombre("");
+		email="";
+		nombre="";
 	}
 	
 	public Long getIdUsuario(){
@@ -25,7 +25,7 @@ public class Usuario {
 	}
 	
 	public void setIdUsuario(Long id){
-		this.idUsuario=id;
+		idUsuario=id;
 	}
 	
 	public String getEmail(){
@@ -43,5 +43,5 @@ public class Usuario {
 	public void setNombre(String nom){
 		nombre=nom;
 	}
-
+	
 }

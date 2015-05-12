@@ -41,20 +41,20 @@ public abstract class Tarea {
 		setDescripcion("");
 	}
 	
+	public boolean completa(){
+		return completa;
+	}
+	
+	public void setCompleta(boolean c){
+		completa= c;
+	}
+	
 	public boolean getCompleta(){
 		return completa;
 	}
 	
-	public void setCompleta(boolean estaCompleta){
-		this.completa=estaCompleta;
-	}
-	
-	public boolean completa(){
-		return getCompleta();
-	}
-	
 	public void completar(){
-		setCompleta(true);
+		completa=true;
 	}
 	
 	public Date getFechaLimite(){
@@ -75,6 +75,10 @@ public abstract class Tarea {
 	
 	public Collection<Paso> getPasos(){
 		return pasos;
+	}
+	
+	public void setPasos(Collection<Paso> p){
+		pasos=p;
 	}
 	
 	public boolean vencida(){
@@ -108,13 +112,12 @@ public abstract class Tarea {
 		
 		pizarra.agregarTarea(this);
 	}
-
-	public Long getIdTarea() {
+	
+	public Long getIdTarea(){
 		return idTarea;
 	}
-
-	public void setIdTarea(Long idTarea) {
-		this.idTarea = idTarea;
+	public void setIdTarea(Long id){
+		idTarea= id;
 	}
 	
 }

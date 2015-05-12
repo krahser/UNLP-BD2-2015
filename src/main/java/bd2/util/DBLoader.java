@@ -6,11 +6,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
-import bd2.model.*;
+import bd2.model.Pizarra;
+import bd2.model.Proyecto;
+import bd2.model.Sitio;
+import bd2.model.TareaDeDesarrollo;
+import bd2.model.TareaDeInvestigacion;
+import bd2.model.Usuario;
 
 public class DBLoader {
 
