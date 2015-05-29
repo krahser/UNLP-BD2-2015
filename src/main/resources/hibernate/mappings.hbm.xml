@@ -25,7 +25,7 @@
 	
 	    <property name="fechaDeCreacion" not-null="true"/>
 	    
-		<many-to-one name="Usuario" column="idUsuario" cascade="all" />
+		<many-to-one name="usuario" column="idUsuario" cascade="all" />
 		
 		<joined-subclass name="PerfilDeAdministrador" table="perfilDeAdministrador">
 			<key column="idPerfilDeUsuario"/>
@@ -40,6 +40,7 @@
 			<generator class="native"/>
 		</id>
 		
+		<discriminator column="tipoTarea" type="string"/>
 		<property name="completa" not-null="true"/>
 		<property name="fechaLimite" not-null="true"/>
 		<property name="descripcion" not-null="true"/>
@@ -50,16 +51,14 @@
 			<one-to-many class="Paso"/>
 		</list>
 		
-		<joined-subclass name="TareaDeInvestigacion" table="tareaDeInvestigacion">
-			<key column="idTarea"/>
-			<property name="hipotesis" column="hipotesis"/>
-			<property name="resultado" column="resultado"/>
-		</joined-subclass>
+		<subclass name="TareaDeInvestigacion" discriminator-value="tdi">
+			<property name="hipotesis" length="1024"/>
+			<property name="resultado" length="1024"/>
+		</subclass>
 		
-		<joined-subclass name="TareaDeDesarrollo" table="tareaDeDesarrollo">
-			<key column="idTarea"/>
-			<property name="requerimientos" column="requerimientos" length = "1024"/>
-		</joined-subclass>
+		<subclass name="TareaDeDesarrollo" discriminator-value="tdd">
+			<property name="requerimientos" length="1024"/>
+		</subclass>
 		
 	</class>
 	
@@ -72,6 +71,8 @@
 			<key column="idPizarra"/>
 			<one-to-many class="Tarea"/>
 		</set>
+		
+		<property name="nombre" not-null="true"/>
 		
 	</class>
 
@@ -104,7 +105,7 @@
 		
 		<property name="fechaDeIngreso" not-null="true"/>
 	    
-		<many-to-one name="Pizarra" column="idPizarra" cascade="all" />
+		<many-to-one name="pizarra" column="idPizarra" cascade="all" />
 	</class>
 	
 	<class name="Sitio" table="sitio">
