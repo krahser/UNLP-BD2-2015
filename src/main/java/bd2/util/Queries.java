@@ -22,10 +22,12 @@ public class Queries {
 		cfg.configure("hibernate/hibernate.cfg.xml");
 		sessions = cfg.buildSessionFactory();
 		listarNombresPizarras();
-		listarDescrpicionTareasLike("read");
+		listarDescripcionTareasLike("read");
 		listarPizarraMaxTareas();
 		listarEmailAdminPizArch();
-		listarTareasCambiadasDePizarra("backlogproyecto8149");
+		listarTareasConPasoPorPizarra("backlogproyecto8149");
+		listarTareasCambiadasDePizarra(2);
+		
 	}
 
 	public static void imprimirFormato(String consulta){
@@ -39,6 +41,13 @@ public class Queries {
 	for (int i=0; i<lista.size(); i++){
 		System.out.println(etiqueta+lista.get(i));
 				//[0] + "" + lista.get(i)[1]);
+		}
+	System.out.println("------------------------------------------------------------------------");
+	}
+	
+	public static void imprimirTuplasDosDatos(String etiqueta, List<Object[]> lista){
+	for (int i=0; i<lista.size(); i++){
+		System.out.println(etiqueta+lista.get(i)[0] + " (" + lista.get(i)[1] + ")");
 		}
 	System.out.println("------------------------------------------------------------------------");
 	}
@@ -72,7 +81,7 @@ public class Queries {
 	}
 	
 	/*********** Consulta B***********/
-	public static void listarDescrpicionTareasLike(String desc){
+	public static void listarDescripcionTareasLike(String desc){
 		List<Object[]> lista = null;
 		Session session = sessions.openSession();
 		Transaction tx = null;
@@ -158,7 +167,7 @@ public class Queries {
 		imprimirTuplas("Administrador:", lista);
 	}
 	/*********** Consulta E***********/
-	public static void listarTareasCambiadasDePizarra(String desc){
+	public static void listarTareasConPasoPorPizarra(String desc){
 		List<Object[]> lista = null;
 		Session session = sessions.openSession();
 		Transaction tx = null;
@@ -177,14 +186,44 @@ public class Queries {
 		finally {
 			session.close();
 		}
-		imprimirListarTareasCambiadasDePizarra(lista);
+		imprimirListarTareasConPasoPorPizarra(lista);
 
 	}
-	public static void imprimirListarTareasCambiadasDePizarra(List<Object[]> lista){
+	public static void imprimirListarTareasConPasoPorPizarra(List<Object[]> lista){
 		imprimirFormato("Obtener las tareas que hayan pasado por la pizarra cuyo nombre contenga una secuencia de caracteres enviada como parámetro. Imprimir	“Tarea:<descripción>”");
 		imprimirTuplas("Tarea: ", lista);
 	}
 	/*********** Consulta F***********/
+	public static void listarTareasCambiadasDePizarra(int cambios){
+		List<Object[]> lista = null;
+		Session session = sessions.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Query q = session.createQuery("select distinct(t.descripcion), t.pasos.size from Tarea t  inner join t.pasos pi where t.pasos.size > :cambios").setInteger("cambios", cambios);
+			lista = (List<Object[]>) q.list();
+			tx.commit();	
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null) {
+				tx.rollback();
+			}
+		}
+		finally {
+			session.close();
+		}
+		imprimirListarTareasCambiadasDePizarra(lista);
+
+		
+	}
+	public static void imprimirListarTareasCambiadasDePizarra(List<Object[]> lista){
+		imprimirFormato("Obtener las tareas que hayan sido cambiadas de pizarra más de un número veces enviado"+ 
+				" como parámetro Imprimir “Tarea: <descripción> (<cantidad de pasos> pasos)”");
+		imprimirTuplasDosDatos("Tarea: ", lista);
+	}
+	
+	/*********** Consulta G***********/
 	public void listarPizzarraDeInvestigacionYDesarrollo(){
 		List<Object[]> lista = null;
 		Session session = sessions.openSession();
@@ -215,7 +254,7 @@ public class Queries {
 		System.out.println("------------------------------------------------------------------------");
 	}
 
-	/*********** Consulta G***********/
+	/*********** Consulta H***********/
 	public void listarTareasVencidasEnMarzo(){
 		List<Object[]> lista = null;
 		Session session = sessions.openSession();
