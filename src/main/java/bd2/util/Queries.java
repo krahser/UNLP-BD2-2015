@@ -27,6 +27,8 @@ public class Queries {
 		listarEmailAdminPizArch();
 		listarTareasConPasoPorPizarra("backlogproyecto8149");
 		listarTareasCambiadasDePizarra(2);
+		//listarPizzarraDeInvestigacionYDesarrollo();
+		listarTareasVencidasEnMarzo();
 		
 	}
 
@@ -224,13 +226,13 @@ public class Queries {
 	}
 	
 	/*********** Consulta G***********/
-	public void listarPizzarraDeInvestigacionYDesarrollo(){
+	public static void listarPizzarraDeInvestigacionYDesarrollo(){
 		List<Object[]> lista = null;
 		Session session = sessions.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			Query q = session.createQuery("select pda.usuario.email from Proyecto p,PerfilDeAdministrador pda  where p.pizarrasArchivadas is not empty");
+			Query q = session.createQuery("select p.nombre from Pizarra p inner join p.tareas as t where exists(from TareaDeInvestigacion tdi where tdi.descripcion = t.descripcion)  and exists(from TareaDeDesarrollo tdd where tdd.descripcion = t.descripcion)");
 			lista = (List<Object[]>) q.list();
 			tx.commit();	
 		} 
@@ -248,20 +250,19 @@ public class Queries {
 	}
 	
 	public static void imprimirListarPizarraDeInvestigacionYDesarrollo(List<Object[]> lista){
-		imprimirFormato("Obtener las tareas que hayan sido cambiadas de pizarra más de un número veces enviado" + 
-				"como parámetro Imprimir “Tarea: <descripción> (<cantidad de pasos> pasos)”");
-		System.out.println("Tarea: "+lista.get(0)[1]+" ("+lista.get(0)[0]+" tareas)");
-		System.out.println("------------------------------------------------------------------------");
+		imprimirFormato("Obtener las pizarras que tengan tareas tanto de investigación como de desarrollo "+
+				"Imprimir Pizarra: <nombre>");
+		imprimirTuplas("Pizarra: ", lista);
 	}
 
 	/*********** Consulta H***********/
-	public void listarTareasVencidasEnMarzo(){
+	public static void listarTareasVencidasEnMarzo(){
 		List<Object[]> lista = null;
 		Session session = sessions.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			Query q = session.createQuery("select pda.usuario.email from Proyecto p,PerfilDeAdministrador pda  where p.pizarrasArchivadas is not empty");
+			Query q = session.createQuery("select distinct(p.idPizarra), t.descripcion from Pizarra p inner join p.tareas t where t.completa is false and t.fechaLimite BETWEEN '2015/03/01' AND '2015/03/31' ");
 			lista = (List<Object[]>) q.list();
 			tx.commit();	
 		} 
@@ -281,8 +282,11 @@ public class Queries {
 		imprimirFormato("Obtener las pizarras que tengan tareas vencidas en marzo  es decir " +
 					"que sus fechas límite estén dentro marzo de 2015 y no estén completas" +
 				    "Imprimir “Pizarra  <nombre>");
-		System.out.println("Pizarra con más tareas: "+lista.get(0)[1]+" ("+lista.get(0)[0]+" tareas)");
-		System.out.println("------------------------------------------------------------------------");
+		imprimirTuplasDosDatos("Pizarra: ", lista);
+		//for (int i=0; i<lista.size(); i++){
+		//	System.out.println("Pizarra: "+lista.get(i)[0] + " (" + lista.get(i)[1] + " " + lista.get(i)[2] + " "+ lista.get(i)[3] + ")");
+		//	}
+		//imprimirTuplasDosDatos("Pizarra: ", lista);
 	}
 }
 
