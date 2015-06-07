@@ -21,14 +21,14 @@ public class Queries {
 		Configuration cfg = new Configuration();
 		cfg.configure("hibernate/hibernate.cfg.xml");
 		sessions = cfg.buildSessionFactory();
-		listarNombresPizarras();
-		listarDescripcionTareasLike("read");
-		listarPizarraMaxTareas();
-		listarEmailAdminPizArch();
-		listarTareasConPasoPorPizarra("backlogproyecto8149");
-		listarTareasCambiadasDePizarra(2);
-		//listarPizzarraDeInvestigacionYDesarrollo();
-		listarTareasVencidasEnMarzo();
+		//listarNombresPizarras();
+		//listarDescripcionTareasLike("read");
+		//listarPizarraMaxTareas();
+		//listarEmailAdminPizArch();
+		//listarTareasConPasoPorPizarra("backlogproyecto8149");
+		//listarTareasCambiadasDePizarra(2);
+		listarPizzarraDeInvestigacionYDesarrollo();
+		//listarPizarrasConTareasVencidasEnMarzo();
 		
 	}
 
@@ -220,8 +220,7 @@ public class Queries {
 		
 	}
 	public static void imprimirListarTareasCambiadasDePizarra(List<Object[]> lista){
-		imprimirFormato("Obtener las tareas que hayan sido cambiadas de pizarra más de un número veces enviado"+ 
-				" como parámetro Imprimir “Tarea: <descripción> (<cantidad de pasos> pasos)”");
+		imprimirFormato("como parámetro Imprimir “Tarea: <descripción> (<cantidad de pasos> pasos)”");
 		imprimirTuplasDosDatos("Tarea: ", lista);
 	}
 	
@@ -232,7 +231,8 @@ public class Queries {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			Query q = session.createQuery("select p.nombre from Pizarra p inner join p.tareas as t where exists(from TareaDeInvestigacion tdi where tdi.descripcion = t.descripcion)  and exists(from TareaDeDesarrollo tdd where tdd.descripcion = t.descripcion)");
+			Query q = session.createQuery("select p.nombre from Pizarra p where p in(select pi from TareaDeInvestigacion tdi inner join tdi.pasos pasos inner join pasos.pizarra pi)");
+			// and p in(select pi from tareasDeDesarrollo tdd inner join tdd.pasos pasos inner join pasos.pizarra)
 			lista = (List<Object[]>) q.list();
 			tx.commit();	
 		} 
@@ -256,13 +256,14 @@ public class Queries {
 	}
 
 	/*********** Consulta H***********/
-	public static void listarTareasVencidasEnMarzo(){
+	public static void listarPizarrasConTareasVencidasEnMarzo(){
 		List<Object[]> lista = null;
 		Session session = sessions.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			Query q = session.createQuery("select distinct(p.idPizarra), t.descripcion from Pizarra p inner join p.tareas t where t.completa is false and t.fechaLimite BETWEEN '2015/03/01' AND '2015/03/31' ");
+			//Query q = session.createQuery("select pda.usuario.email from Proyecto p,PerfilDeAdministrador pda  where p.pizarrasArchivadas is not empty");
+			Query q = session.createQuery("select DISTINCT p.nombre from Pizarra p inner join p.tareas as t where t.completa=false and t.fechaLimite BETWEEN '2015/03/01' AND '2015/03/31'");
 			lista = (List<Object[]>) q.list();
 			tx.commit();	
 		} 
@@ -275,18 +276,14 @@ public class Queries {
 		finally {
 			session.close();
 		}
-		imprimirListarTareasVencidasEnMarzo(lista);
+		imprimirListarPizarrasConTareasVencidasEnMarzo(lista);
 
 	}
-	public static void imprimirListarTareasVencidasEnMarzo(List<Object[]> lista){
-		imprimirFormato("Obtener las pizarras que tengan tareas vencidas en marzo  es decir " +
-					"que sus fechas límite estén dentro marzo de 2015 y no estén completas" +
-				    "Imprimir “Pizarra  <nombre>");
-		imprimirTuplasDosDatos("Pizarra: ", lista);
-		//for (int i=0; i<lista.size(); i++){
-		//	System.out.println("Pizarra: "+lista.get(i)[0] + " (" + lista.get(i)[1] + " " + lista.get(i)[2] + " "+ lista.get(i)[3] + ")");
-		//	}
-		//imprimirTuplasDosDatos("Pizarra: ", lista);
+	public static void imprimirListarPizarrasConTareasVencidasEnMarzo(List<Object[]> lista){
+		imprimirFormato("Obtener las pizarras que tengan tareas vencidas en marzo, es decir que sus fechas " +
+				    "límite estén dentro de marzo de 2015 y no estén completas." + "Imprimir “Pizarra  <nombre>");
+		imprimirTuplas("Pizarra: ", lista);
+		//System.out.println("Pizarra con más tareas: "+lista.get(0)[1]+" ("+lista.get(0)[0]+" tareas)");
+		System.out.println("------------------------------------------------------------------------");
 	}
 }
-
