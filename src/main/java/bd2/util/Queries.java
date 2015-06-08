@@ -21,14 +21,14 @@ public class Queries {
 		Configuration cfg = new Configuration();
 		cfg.configure("hibernate/hibernate.cfg.xml");
 		sessions = cfg.buildSessionFactory();
-		//listarNombresPizarras();
-		//listarDescripcionTareasLike("read");
-		//listarPizarraMaxTareas();
-		//listarEmailAdminPizArch();
-		//listarTareasConPasoPorPizarra("backlogproyecto8149");
-		//listarTareasCambiadasDePizarra(2);
+		listarNombresPizarras();
+		listarDescripcionTareasLike("read");
+		listarPizarraMaxTareas();
+		listarEmailAdminPizArch();
+		listarTareasConPasoPorPizarra("backlogproyecto8149");
+		listarTareasCambiadasDePizarra(2);
 		listarPizzarraDeInvestigacionYDesarrollo();
-		//listarPizarrasConTareasVencidasEnMarzo();
+		listarPizarrasConTareasVencidasEnMarzo();
 		
 	}
 
@@ -224,6 +224,7 @@ public class Queries {
 		imprimirTuplasDosDatos("Tarea: ", lista);
 	}
 	
+	
 	/*********** Consulta G***********/
 	public static void listarPizzarraDeInvestigacionYDesarrollo(){
 		List<Object[]> lista = null;
@@ -231,8 +232,7 @@ public class Queries {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			Query q = session.createQuery("select p.nombre from Pizarra p where p in(select pi from TareaDeInvestigacion tdi inner join tdi.pasos pasos inner join pasos.pizarra pi)");
-			// and p in(select pi from tareasDeDesarrollo tdd inner join tdd.pasos pasos inner join pasos.pizarra)
+			Query q = session.createQuery("select p.nombre from Pizarra p , TareaDeInvestigacion tdi, TareaDeDesarrollo tdd where tdi in elements(p.tareas) and tdd in elements(p.tareas) group by p");
 			lista = (List<Object[]>) q.list();
 			tx.commit();	
 		} 
@@ -254,7 +254,6 @@ public class Queries {
 				"Imprimir Pizarra: <nombre>");
 		imprimirTuplas("Pizarra: ", lista);
 	}
-
 	/*********** Consulta H***********/
 	public static void listarPizarrasConTareasVencidasEnMarzo(){
 		List<Object[]> lista = null;
